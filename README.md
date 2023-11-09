@@ -1,11 +1,9 @@
-# :ghost:Delete: Deep Lead Optimization Enveloped in Protein Pockets through Deleting Strategy combined with a structure-aware network 
-——When you face some problems in drug discovery, just delete! 
+# 🌈**Structure-based Deep Molecular Generation Paradigm Enables Efficient Design of Potent CLIP1-LTK Inhibitors**
+
 
 <div align=center>
 <img src="./assets/toc.png" width="80%" height="80%" alt="TOC" align=center />
 </div>
-
-
 ## Environment
 
 ### First Approach
@@ -34,7 +32,7 @@ Please remember to replace "my case" with your actual username or replace it dep
 
 
 
-## Generate novel structures
+## Delete Prior Molecules 
 
 I have provided an example to suggest new structures using adbr1 example, use this command to generate 3D molecules given the protein and lead fragment! The pretrained checkpoint could be downloaded [here](https://doi.org/10.5281/zenodo.7985201).
 
@@ -48,8 +46,9 @@ python -u delete.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path 
 Here, I provide a famous drug-design example, the inhibitor for adrb1, which can be used in the treatment of hypertension. The crystal structure of bounded cyanopindolol was selected as the reference ligand. Then we delete its heteroaromatic moiety, retaining solely the ethanolamine backbone as the foundation for Delete generation.
 
 <div align=center>
-<img src="./assets/initial.png" width="80%" height="80%" alt="TOC" align=center />
+<img src="./assets/delete_mols.png" width="80%" height="80%" alt="TOC" align=center />
 </div>
+
 
 Using the above command for generation, about 100 structures are generated, and one of the generated samples successfully reproduces the cyanopindolol structure, both 2D chemical formula and 3D binding conformation. 
 
