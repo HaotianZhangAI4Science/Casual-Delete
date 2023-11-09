@@ -46,21 +46,24 @@ python -u delete.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path 
 Here, I provide a famous drug-design example, the inhibitor for adrb1, which can be used in the treatment of hypertension. The crystal structure of bounded cyanopindolol was selected as the reference ligand. Then we delete its heteroaromatic moiety, retaining solely the ethanolamine backbone as the foundation for Delete generation.
 
 <div align=center>
-<img src="./assets/delete_mols.png" width="80%" height="80%" alt="TOC" align=center />
+<img src="./assets/delete_mols.png" width="120%" height="120%" alt="TOC" align=center />
 </div>
+
+
 
 
 Using the above command for generation, about 100 structures are generated, and one of the generated samples successfully reproduces the cyanopindolol structure, both 2D chemical formula and 3D binding conformation. 
 
-<div align=center>
-<img src="./assets/reproduce.png" width="80%" height="80%" alt="TOC" align=center />
-</div>
-
  Besides, it also suggests several ligands that are potentially bound to the provided adrb1 structure. This example shows how powerful Delete can be, it fully considers the geometric and chemical environment of pockets. When you face some problems in drug discovery, just Delete!
 
+
+
+## Combining Structure-based and Ligand-based Paradigms 
+
 <div align=center>
-<img src="./assets/compare.png" width="80%" height="80%" alt="TOC" align=center />
+<img src="./assets/causal_inference.png" width="100%" height="100%" alt="TOC" align=center />
 </div>
+
 
 
 
