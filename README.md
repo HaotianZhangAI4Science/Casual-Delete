@@ -30,6 +30,13 @@ conda activate delete
 
 Please remember to replace "my case" with your actual username or replace it depending on your requirements.
 
+### Docking Environment 
+
+```python
+conda create -n docking rdkit ipykernel jupyter biopython python=3.8 easydict -c rdkit -c conda-forge
+conda install -c bioconda mgltools
+```
+
 
 
 ## Delete Prior Molecules 
