@@ -3,7 +3,6 @@ model:
   hidden_channels: 256
   hidden_channels_vec: 64
   encoder:
-    name: cftfm
     hidden_channels: 256
     hidden_channels_vec: 64
     edge_channels: 64
@@ -36,8 +35,7 @@ train:
   pos_noise_std: 0.1
   max_grad_norm: 100.0
   resume_train: False
-  ckpt_name: None
-  start_epoch: None
+  ckpt_path: None
   optimizer:
     type: adam
     lr: 2.e-4
@@ -51,7 +49,7 @@ train:
     min_lr: 1.e-5
   transform:
     mask:
-      type: fragmentation
+      type: mixed
       min_ratio: 0.0
       max_ratio: 1.1
       min_num_masked: 1
@@ -70,6 +68,7 @@ train:
 
 
 dataset:
-  name: pl
-  path: ./data/crossdocked_pocket10
-  split: ./data/split_by_name.pt
+  path: ./data/crossdock 
+  name: ./data/crossdocked_pocket10_mol.lmdb
+  name2id_path: ./data/crossdocked_pocket10_molname2id.pt
+  split_file: ./data/split_by_name.pt

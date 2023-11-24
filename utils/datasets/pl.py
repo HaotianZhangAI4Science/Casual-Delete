@@ -117,12 +117,18 @@ class PocketLigandPairDataset(Dataset):
 
 class SurfLigandPairDataset(Dataset):
 
-    def __init__(self, raw_path, transform=None):
+    def __init__(self, raw_path, transform=None, processed_path=None, name2id_path=None):
         super().__init__()
         self.raw_path = raw_path.rstrip('/')
         self.index_path = os.path.join(self.raw_path, 'index.pkl')
-        self.processed_path = os.path.join(os.path.dirname(self.raw_path), os.path.basename(self.raw_path) + '_mol.lmdb')
-        self.name2id_path = os.path.join(os.path.dirname(self.raw_path), os.path.basename(self.raw_path) + '_molname2id.pt')
+        if processed_path is None:
+            self.processed_path = os.path.join(os.path.dirname(self.raw_path), os.path.basename(self.raw_path) + '_mol.lmdb')
+        else:
+            self.processed_path = processed_path
+        if name2id_path is None:
+            self.name2id_path = os.path.join(os.path.dirname(self.raw_path), os.path.basename(self.raw_path) + '_molname2id.pt')
+        else:
+            self.name2id_path = name2id_path
         self.transform = transform
         self.db = None
         self.keys = None

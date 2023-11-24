@@ -34,7 +34,7 @@ Please remember to replace "my case" with your actual username or replace it dep
 
 ```python
 conda create -n docking rdkit ipykernel jupyter biopython python=3.8 easydict -c rdkit -c conda-forge
-conda install -c bioconda mgltools
+# Then download mgltools locally, do not use the conda! 
 ```
 
 
@@ -44,7 +44,7 @@ conda install -c bioconda mgltools
 I have provided an example to suggest new structures using adbr1 example, use this command to generate 3D molecules given the protein and lead fragment! The pretrained checkpoint could be downloaded [here](https://doi.org/10.5281/zenodo.7985201).
 
 ```python
-python -u delete.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path ./example/adrb1/2VT4_frag.sdf --check_point ./checkpoint/ckpt/delete.pt --outdir ./outputs --suboutdir adrb1
+python -u design_mols.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path ./example/adrb1/2VT4_frag.sdf --check_point ./checkpoint/ckpt/delete.pt --outdir ./outputs --suboutdir adrb1
 # main parameters: 
 # --surf_path: the provided surface file
 # --frag_path: the lead waiting for optimization
@@ -92,24 +92,16 @@ If you run them successfully, you will get the `causal_inference_data.lmdb`, `ca
 python causual_inference_transfer.py --config ./causual_inference.yml
 ```
 
+
+
 ## Data
 
-There are two datasets used for training, one is CrossDock2020, another is BindingMoad. 
+The base data for training can be found at [CrossDock](https://doi.org/10.5281/zenodo.7980002), including `lmdb`, `lmdb-lock`, `name2id`, `split_by_name`. 
 
-If you want to process from scratch, please refer to the ./data/README.MD
-
-Here, we provided the processed file in lmdb format. 
-
-[CrossDock](https://doi.org/10.5281/zenodo.7980002) includes lmdb, lmdb-lock, name2id, split_by_name. 
-
-[BindingMoad](https://doi.org/10.5281/zenodo.7980026) includes lmdb, lmdb-lock, name2id, split_by_name. 
-
-
-
-## Train
+## Train Base model 
 
 ```shell
-python delete_train.py --config ./configs/train_{}.yml 
+python delete_train.py --config ./configs/base_train.yml
 ```
 
 

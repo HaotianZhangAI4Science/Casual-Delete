@@ -81,4 +81,10 @@ def get_model_loss(model, batch, config):
             real_compose_knn_edge_index = torch.stack([batch.real_compose_knn_edge_index_0, batch.real_compose_knn_edge_index_1], dim=0),
             fake_compose_knn_edge_index = torch.stack([batch.fake_compose_knn_edge_index_0, batch.fake_compose_knn_edge_index_1], dim=0),
         )
+    
+    # try:
+    #     loss = loss * batch.mol_impact
+    # except Exception as e:
+    #     print(e)
+
     return loss, loss_frontier, loss_pos, loss_cls, loss_edge, loss_real, loss_fake, loss_surf
