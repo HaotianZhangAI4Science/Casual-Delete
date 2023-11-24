@@ -4,6 +4,8 @@
 <div align=center>
 <img src="./assets/toc.png" width="80%" height="80%" alt="TOC" align=center />
 </div>
+
+
 ## Environment
 
 ### First Approach
@@ -41,20 +43,28 @@ conda create -n docking rdkit ipykernel jupyter biopython python=3.8 easydict -c
 
 ## Delete Prior Molecules 
 
-I have provided an example to suggest new structures using adbr1 example, use this command to generate 3D molecules given the protein and lead fragment! The pretrained checkpoint could be downloaded [here](https://doi.org/10.5281/zenodo.7985201).
+Causal-Delete is based on the deconstruction-reconstruction approach, which means that you can delete the undesired part of molecules for the subsequent model suggestions. This strategy has successfully resulted in several successful drug design campaigns in history. Now, this classical approach is powered by the structure-based deep learning method, allowing chemists to take multiple-choice instead of doing fill-in-the-blank questions. 
 
-```python
+To illustrate, you can load the complex structures, obtained from the Protein Data Bank or from the docking results, in the pymol, as illustrated in the first piece of the following figure. Then delete partial structures. In our example, we want to modify the fragment that extends into the protein pocket, thus we delete atoms as shown in the second piece, getting the hit fragments. 
+
+<div align=center>
+<img src="./assets/delete_mols.png" width="120%" height="120%" alt="TOC" align=center />
+</div>
+Then, suggest novel molecules with the following code. The pre-trained checkpoint can be downloaded [here](https://doi.org/10.5281/zenodo.7985201).
+
+```shell
 python -u design_mols.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path ./example/adrb1/2VT4_frag.sdf --check_point ./checkpoint/ckpt/delete.pt --outdir ./outputs --suboutdir adrb1
 # main parameters: 
 # --surf_path: the provided surface file
 # --frag_path: the lead waiting for optimization
 ```
 
-Here, I provide a famous drug-design example, the inhibitor for adrb1, which can be used in the treatment of hypertension. The crystal structure of bounded cyanopindolol was selected as the reference ligand. Then we delete its heteroaromatic moiety, retaining solely the ethanolamine backbone as the foundation for Delete generation.
+The examples of generated molecules are listed below. 
 
 <div align=center>
-<img src="./assets/delete_mols.png" width="120%" height="120%" alt="TOC" align=center />
+<img src="./assets/examples.png" width="120%" height="120%" alt="TOC" align=center />
 </div>
+
 
 
 ## Combining Structure-based and Ligand-based Paradigms 
@@ -62,6 +72,8 @@ Here, I provide a famous drug-design example, the inhibitor for adrb1, which can
 <div align=center>
 <img src="./assets/causal_inference.png" width="100%" height="100%" alt="TOC" align=center />
 </div>
+Causal-Delete is the integration of structure- and ligand-based method. In the LTK case, a novel target that has no reported specific ligands recently. To emulate the real-world scenario, where chemists can use the inspiration from a similar target to design its specific inhibitors, the causal-inference strategy is adopted to borrow the chemical space from the ALK target, which shares a high sequence similarity with LTK and contains more than 2000 verified active molecules. In your case, you can perform a similar approach to embed the prior knowledge into the structure-based approach. You can follow the subsequent workflow to build your own case. 
+
 #### Private data preparation
 
 Prepare your own data in the ./causal_inference/SDF, with each .sdf file being a molecule of interest. 
