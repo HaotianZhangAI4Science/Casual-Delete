@@ -57,22 +57,40 @@ Here, I provide a famous drug-design example, the inhibitor for adrb1, which can
 </div>
 
 
-
-
-Using the above command for generation, about 100 structures are generated, and one of the generated samples successfully reproduces the cyanopindolol structure, both 2D chemical formula and 3D binding conformation. 
-
- Besides, it also suggests several ligands that are potentially bound to the provided adrb1 structure. This example shows how powerful Delete can be, it fully considers the geometric and chemical environment of pockets. When you face some problems in drug discovery, just Delete!
-
-
-
 ## Combining Structure-based and Ligand-based Paradigms 
 
 <div align=center>
 <img src="./assets/causal_inference.png" width="100%" height="100%" alt="TOC" align=center />
 </div>
+#### Private data preparation
 
+Prepare your own data in the ./causal_inference/SDF, with each .sdf file being a molecule of interest. 
 
+#### Label preparation (Optional)
 
+Then get the label of each molecule. For example, predicted affinity, IC50/Kd, or the docking score. 
+
+```shell
+# If you do not have the affinity label, docking is an alternative choice. 
+python ./causal_inference/docking.py 
+```
+
+Then, each *.sdf file will be processed as the *_out.sdf file. 
+
+#### LMDB data preparation 
+
+Follow the guidance in the `./causal_inference_data.ipynb`
+
+Firstly, create the protein-ligand index files. Secondly, create the LMDB database with the index.pkl Thirdly, transform each data in the LMDB database to filter the invalid train sample, leaving them out of the name2id dictionary. For the train_val_split, the first twenty samples are treated as validation sets. 
+
+If you run them successfully, you will get the `causal_inference_data.lmdb`, `causal_inference_data.lmdb-lock`, `causal_inference_data_name2id.pt`, `causal_inference_data_split_name.pt` in the `./data`
+
+#### Transfer the chemical space to the structure-based model
+
+```shell
+# Of note, change the base model in the config file, and make sure the data path is correct. 
+python causual_inference_transfer.py --config ./causual_inference.yml
+```
 
 ## Data
 
