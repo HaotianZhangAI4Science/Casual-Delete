@@ -53,10 +53,7 @@ To illustrate, you can load the complex structures, obtained from the Protein Da
 Then, suggest novel molecules with the following code. The pre-trained checkpoint can be downloaded [here](https://doi.org/10.5281/zenodo.7985201). 
 
 ```shell
-python -u design_mols.py --surf_path ./example/adrb1/adrb_pocket_8.0.ply --frag_path ./example/adrb1/2VT4_frag.sdf --check_point ./checkpoint/ckpt/delete.pt --outdir ./outputs --suboutdir adrb1
-# main parameters: 
-# --surf_path: the provided surface file
-# --frag_path: the lead waiting for optimization
+python -u design_mols.py --surf_path ./example/LTK_pocket_8.0.ply --frag_path ./example/partial_ltk.sdf --check_point ./ckpt/delete.pt --outdir ./outputs --suboutdir ./example
 ```
 
 The examples of generated molecules are listed below. 
